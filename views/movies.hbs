@@ -1,0 +1,10 @@
+<div>Here's the data you're looking for...</div>
+{{#each moviedata}}
+  <div>
+    <h2>{{ title }}</h2>
+    <p>Made in {{ year }}</p>
+  </div>
+  {{#else}}
+    <div>There's nothing to show!</div>
+  {{/else}}
+{{/each}}
