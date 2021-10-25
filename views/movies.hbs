@@ -1,10 +1,37 @@
 <div>Here's the data you're looking for...</div>
-{{#each moviedata}}
+{{!-- {{#each moviedata}}
   <div>
     <h2>{{ title }}</h2>
-    <p>Made in {{ year }}</p>
+    <p>Made in {{ year.$numberInt }}</p>
   </div>
   {{#else}}
     <div>There's nothing to show!</div>
   {{/else}}
-{{/each}}
+  {{#if poster}}        
+    <img src="{{ poster }}" height="250" />    
+  {{else}}        
+    <p style="color:red;">This movie has no poster!</p>    
+  {{/if}}
+{{/each}} --}}
+
+{{#each moviedata}}   
+<div>       
+  <h2>{{ title }}</h2>       
+  <p>Made in {{#each year}} {{ this }} {{/each}}</p>       
+  {{#if poster}}          
+  <img src="{{ poster }}" height="250" />       
+  {{else}}          
+  <p style="color:red;">This movie has no poster!</p>       
+  {{/if}}       
+  <p><strong>Awards</strong></p>       
+  {{#each awards}}           
+  {{#if typeof @key === 'object'}}
+  <p>{{@key}}: {{$numberInt}} for {{../title}}</p>
+  {{/if}}
+  {{/each}}   
+  </div>   
+  {{#else}}     
+  <div>There's nothing to show!</div>   
+  {{/else}}   
+  <hr />
+  {{/each}}
